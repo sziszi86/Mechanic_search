@@ -1,0 +1,13 @@
+<div class="main">
+  <h2>Szerelő keresése</h2>
+  <div class="card">
+    <div class="input-wrap">
+      <img src="../assets/Group%201.png" width="18px" class="search">
+      <input type="search" [(ngModel)] = "email" placeholder="Ember keresése">
+    </div>
+    <div *ngFor="let user of users | FilterPipe: email" class="city" >
+
+       {{ user.email}}
+    </div>
+  </div>
+</div>
