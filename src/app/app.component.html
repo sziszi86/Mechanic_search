@@ -1,13 +1,26 @@
-<div class="main">
-  <h2>Szerelő keresése</h2>
-  <div class="card">
-    <div class="input-wrap">
-      <img src="../assets/Group%201.png" width="18px" class="search">
-      <input type="search" [(ngModel)] = "email" placeholder="Ember keresése">
-    </div>
-    <div *ngFor="let user of users | FilterPipe: email" class="city" >
+<div class="container-fluid wrapper">
+  <h2>Mercedes szakértő kereső app</h2>
+  <div class="card-deck">
+      <mat-form-field class="col-md-5" appearance="fill">
+          <mat-label>Szerelő neve</mat-label>
+          <input  [(ngModel)] = "email" matInput type="text">
+      </mat-form-field>
 
-       {{ user.email}}
+<div class="row card-columns">
+    <mat-card class="col-lg-3 mt-3" *ngFor="let user of users | FilterPipe: email: name; location">
+        <mat-card-title-group>
+            <mat-card-title>{{user.name.last}} {{user.name.first}}</mat-card-title>
+            <mat-card-subtitle>
+                <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+                    {{user.location.street.name}} {{user.location.street.number}}
+            </mat-card-subtitle>
+            <img mat-card-lg-image src="{{user.picture.large}}" >
+        </mat-card-title-group>
+        <mat-card-content>
+            {{longText}}
+        </mat-card-content>
+    </mat-card>
     </div>
   </div>
 </div>
+

@@ -4,13 +4,12 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'FilterPipe'
 })
 export class FilterPipe implements PipeTransform {
-
-  transform(value: any, input: any): any {
+  transform(value: any, input: any, name: string, location: string): any {
    if (input) {
-     return value.filter(val => val.toLowerCase().indexOf(input.toLowerCase()) >= 0);
+     return value.filter(user => user.email.toLowerCase().indexOf(input.toLowerCase()) >= 0)
    } else {
      return value;
    }
   }
-
 }
+
