@@ -6,6 +6,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         MatGridListModule,
         MatIconModule,
         MatPaginatorModule,
-        MatInputModule
+        MatInputModule,
+        MatAutocompleteModule
     ],
     exports: [
         MatCardModule,
@@ -23,7 +25,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         MatGridListModule,
         MatIconModule,
         MatPaginatorModule,
-        MatInputModule
+        MatInputModule,
+        MatAutocompleteModule
     ]
 })
 export class MaterialModule {

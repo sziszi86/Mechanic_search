@@ -1,13 +1,22 @@
-h2{
+h2 {
     color: white;
 }
-.wrapper{
-    background: url("https://besthqwallpapers.com/img/original/38329/mercedes-c63-amg-2017-w205-gray-sedan-tuning.jpg") no-repeat  top center;
+
+.wrapper {
+    background-image: url("https://besthqwallpapers.com/img/original/38329/mercedes-c63-amg-2017-w205-gray-sedan-tuning.jpg");
     width: 100%;
     background-size: cover;
-    padding: 0 10px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    padding: 50px 10px;
     overflow-x: hidden;
+
 }
-.mat-card{
+
+.mat-card {
     background: rgba(66, 66, 66, 0.9);
+}
+
+.mat-form-field-infix {
+    width: 33% !important;
 }
