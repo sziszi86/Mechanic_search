@@ -1,11 +1,8 @@
 import {Component, OnInit, Injectable, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {UserService} from './user.service';
+import {UserService} from "./user.service";
 import {Observable} from 'rxjs';
-import {FormControl} from '@angular/forms';
-import {map, startWith} from 'rxjs/operators';
-
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +14,6 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  myControl = new FormControl();
   users: any[] = [];
   httpClient: any;
   last: string;
@@ -28,35 +24,28 @@ export class AppComponent implements OnInit {
   medium: any;
   location: any = '';
   street: string;
+  CityName: any;
   number: number;
   name: any = '';
   results = '';
   user: any;
-  nev = '';
-  filteredOptions: Observable<string[]>;
+  longText = 'Etsi ea quidem, quae adhuc dixisti, quamvis ad aetatem recte isto modo dicerentur. Erat enim res aperta. Est enim tanti philosophi tamque nobilis audacter sua decreta defendere. Quid enim de amicitia statueris utilitatis causa expetenda vides. Ait enim se, si uratur, Quam hoc suave! dicturum.'
+
+  @ViewChild(MatPaginatorModule) paginator: MatPaginatorModule;
+  obs: Observable<any>;
+  value: string;
 
   constructor(private userService: UserService, private changeDetectorRef: ChangeDetectorRef) {
   }
 
-  // tslint:disable-next-line:typedef
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value))
-    );
     this.userService.getUsers()
       .subscribe((data) => {
-          this.users = data.results;
+          this.users = data['results'];
         },
         (error) => {
           console.error(error);
         }
       );
-  }
-  private _filter(value: string, ): string[] {
-    const filterValue = value.toLowerCase();
-    console.log(value);
-
-    return this.users.filter(user => user.location.city.toLowerCase().includes(filterValue));
   }
 }

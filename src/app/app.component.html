@@ -1,39 +1,27 @@
 <div class="container-fluid wrapper">
     <div class="card-deck">
-        <form class="example-form">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Város</mat-label>
-                <input [(ngModel)]="email" type="text"
-                       placeholder="Pick one"
-                       aria-label="City"
-                       matInput
-                       [formControl]="myControl"
-                       [matAutocomplete]="auto">
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                    <mat-option *ngFor="let user of filteredOptions | async" [value]="option">
-                        {{user.location.city}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-        </form>
 
         <mat-form-field class="d-flex justify-content-center" appearance="fill">
-            <mat-label>Szerelő neve</mat-label>
-            <input  matInput type="text">
+            <mat-label>Kérem írja be melyik városban keres szerelőt</mat-label>
+            <input [(ngModel)]="CityName" matInput type="text">
         </mat-form-field>
 
         <div class="row d-flex justify-content-center">
-            <mat-card class="col-lg-3 mt-3 mx-3" *ngFor="let user of users | FilterPipe: email: city">
+            <mat-card class="col-lg-3 mt-3 mx-3" *ngFor="let user of users | FilterPipe: CityName: city">
                 <mat-card-title-group>
                     <mat-card-title>{{user.name.last}} {{user.name.first}}</mat-card-title>
                     <mat-card-subtitle>
-                        <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-                        {{user.location.street.name}} {{user.location.street.number}}
-                        <span class="city">{{user.location.city}}</span>
+                        <mat-icon class="homeIcon">home</mat-icon>
+                        <span class="address">{{user.location.street.name}} {{user.location.street.number}}</span>
+                        <span class="city">{{user.location.city}}, {{user.location.postcode}}</span>
+                        <mat-icon class="homeIcon"> phone</mat-icon>
+                        <span class="phone text-center">{{user.phone}}</span><br>
+                        <mat-icon class="homeIcon"> email</mat-icon>
+                        <a href="mailto:{{user.email}}"> <span class="phone text-center">{{user.email}}</span></a>
                     </mat-card-subtitle>
                     <img class="rounded-circle" mat-card-lg-image src="{{user.picture.large}}">
                 </mat-card-title-group>
-                <mat-card-content>
+                <mat-card-content class="mt-3">
                     {{longText}}
                 </mat-card-content>
             </mat-card>

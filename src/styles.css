@@ -1,9 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-html,body{
-  box-sizing: border-box;
-  margin: 0!important;
-  padding: 0!important;
-  background: #EBF3F3;
+body {
+  background-image: url("https://besthqwallpapers.com/img/original/38329/mercedes-c63-amg-2017-w205-gray-sedan-tuning.jpg");
+  width: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  padding: 50px 10px;
+  overflow-x: hidden;
+
+}
+a{
+  color: gainsboro;
+}
+.mat-form-field-wrapper{
+  width: 33%;
+}
+.mat-input-element{
+  color: white !important;
 }
 
 html, body { height: 100%; }
