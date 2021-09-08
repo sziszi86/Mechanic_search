@@ -1,26 +1,43 @@
 <div class="container-fluid wrapper">
-  <h2>Mercedes szakértő kereső app</h2>
-  <div class="card-deck">
-      <mat-form-field class="col-md-5" appearance="fill">
-          <mat-label>Szerelő neve</mat-label>
-          <input  [(ngModel)] = "email" matInput type="text">
-      </mat-form-field>
+    <div class="card-deck">
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Város</mat-label>
+                <input [(ngModel)]="email" type="text"
+                       placeholder="Pick one"
+                       aria-label="City"
+                       matInput
+                       [formControl]="myControl"
+                       [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let user of filteredOptions | async" [value]="option">
+                        {{user.location.city}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
 
-<div class="row card-columns">
-    <mat-card class="col-lg-3 mt-3" *ngFor="let user of users | FilterPipe: email: name; location">
-        <mat-card-title-group>
-            <mat-card-title>{{user.name.last}} {{user.name.first}}</mat-card-title>
-            <mat-card-subtitle>
-                <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-                    {{user.location.street.name}} {{user.location.street.number}}
-            </mat-card-subtitle>
-            <img mat-card-lg-image src="{{user.picture.large}}" >
-        </mat-card-title-group>
-        <mat-card-content>
-            {{longText}}
-        </mat-card-content>
-    </mat-card>
+        <mat-form-field class="d-flex justify-content-center" appearance="fill">
+            <mat-label>Szerelő neve</mat-label>
+            <input  matInput type="text">
+        </mat-form-field>
+
+        <div class="row d-flex justify-content-center">
+            <mat-card class="col-lg-3 mt-3 mx-3" *ngFor="let user of users | FilterPipe: email: city">
+                <mat-card-title-group>
+                    <mat-card-title>{{user.name.last}} {{user.name.first}}</mat-card-title>
+                    <mat-card-subtitle>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+                        {{user.location.street.name}} {{user.location.street.number}}
+                        <span class="city">{{user.location.city}}</span>
+                    </mat-card-subtitle>
+                    <img class="rounded-circle" mat-card-lg-image src="{{user.picture.large}}">
+                </mat-card-title-group>
+                <mat-card-content>
+                    {{longText}}
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
-  </div>
 </div>
 
