@@ -1,4 +1,4 @@
-# Mechanic Searc
+# Mechanic Search
 npm i 
 
 ## Development server
